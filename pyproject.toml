@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "write2me"
+version = "0.1.0"
+description = ""
+authors = ["Kamil Fedio <kamilf827@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+fastapi = "^0.112.0"
+sqlalchemy = "^2.0.31"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
