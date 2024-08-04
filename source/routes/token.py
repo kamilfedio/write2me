@@ -14,7 +14,15 @@ router = APIRouter()
 async def create_token(
     form_data: OAuth2PasswordRequestForm = Depends(OAuth2PasswordRequestForm),
     session: AsyncSession = Depends(get_async_session)
-):
+) -> dict[str, str]:
+    """
+    generating token to database and returning
+    Args:
+        form_data (OAuth2PasswordRequestForm, optional): OAuth2 form to input login data
+        session (AsyncSession, optional): database session
+    Returns:
+        dict[str, str]: access token and token type
+    """
     email = form_data.username
     password = form_data.password
     user = await SecurityUtils.authenticate(email, password, session)

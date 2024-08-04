@@ -6,18 +6,14 @@ import os
 env_path = os.path.join(os.path.dirname(__file__), '../../.env')
 load_dotenv(env_path)
 
-class Config(BaseSettings):
+class Config:
     title: str = 'write2me'
     description: str ='app dedicated to forms on the pages'
     version: str ='0.0.1'
     debug: bool = True
-    DB_ADDRESS: str
+    DB_ADDRESS: str = os.getenv('DB_ADDRESS')
 
-    class Config:
-        env_file = '.env'
-
-
-class ConfigMiddleware(BaseSettings):
+class ConfigMiddleware:
     allow_origins: list[str] = ['*']
     allow_credentials: bool = True
     allow_methods: list[str] = ["*"]

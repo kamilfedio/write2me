@@ -13,6 +13,14 @@ router = APIRouter()
 async def register(
     user_create: UserCreate, session: AsyncSession = Depends(get_async_session)
 ) -> User:
+    """
+    adding user to database
+    Args:
+        user_create (UserCreate): user creating data
+        session (AsyncSession, optional): database session
+    Returns:
+        User: user data
+    """
     hashed_password = Password.get_password_hash(user_create.password)
 
     user = User(

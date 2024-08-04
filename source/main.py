@@ -11,11 +11,13 @@ from source.routes.register import router as register_router
 from source.routes.token import router as token_router
 from source.routes.user import router as user_router
 
-Config = Config()
-ConfigMiddleware = ConfigMiddleware()
-
 @asynccontextmanager
 async def lifespan(app: FastAPI):
+    """
+    creating lifespan for fastapi
+    Args:
+        app (FastAPI): FastAPI
+    """
     await create_all_tabels()
     yield
 
@@ -34,9 +36,7 @@ app.add_middleware(
     allow_headers=ConfigMiddleware.allow_headers,
 )
 
-routes = RoutesConfig
-
 app.include_router(root_router, tags=['root'])
-app.include_router(register_router, prefix=routes.register, tags=['register'])
-app.include_router(token_router, prefix=routes.token, tags=['token'])
-app.include_router(user_router, prefix=routes.user, tags=['users'])
+app.include_router(register_router, prefix=RoutesConfig.register, tags=['register'])
+app.include_router(token_router, prefix=RoutesConfig.token, tags=['token'])
+app.include_router(user_router, prefix=RoutesConfig.user, tags=['users'])

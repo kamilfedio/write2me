@@ -14,6 +14,14 @@ class Dependencies:
         token: str = Depends(OAuth2PasswordBearer(tokenUrl=RoutesConfig.token)),
         session: AsyncSession = Depends(get_async_session)
     ) -> User:
+        """
+        searching in the database for a user with a given token
+        Args:
+            token (str, optional): input token
+            session (AsyncSession, optional): database session
+        Returns:
+            User: user data
+        """
         query = select(AccessToken).where(
             AccessToken.token == token,
             AccessToken.expiration_date >= datetime.now(tz=timezone.utc),
