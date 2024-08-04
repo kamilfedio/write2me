@@ -6,8 +6,8 @@ from source.config.config import Config
 
 Config = Config()
 
-engine = create_async_engine(Config.DB_ADDRESS)
-async_session_maker = async_sessionmaker(engine, expire_on_commit=False)
+engine = create_async_engine(Config.DB_ADDRESS, echo=True)
+async_session_maker = async_sessionmaker(engine, expire_on_commit=False, class_=AsyncSession)
 
 async def get_async_session() -> AsyncGenerator[AsyncSession, None]:
     async with async_session_maker() as session:

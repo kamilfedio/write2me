@@ -1,4 +1,5 @@
-from pydantic_settings import BaseSettings
-
-class RoutesConfig(BaseSettings):
-    pass
+class RoutesConfig:
+    register: str = '/register'
+    token: str = '/token'
+    user: str = '/users'
+    

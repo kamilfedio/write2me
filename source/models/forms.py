@@ -1,18 +1,21 @@
-from sqlalchemy import DateTime, Text, Column, BigInteger, ForeignKey
-from sqlalchemy.orm import relationship
+from sqlalchemy import DateTime, Text, Integer, ForeignKey
+from sqlalchemy.orm import relationship, mapped_column, Mapped
 from datetime import datetime
-
 from source.models.base import Base
 
 class Form(Base):
     __tablename__ = 'forms'
-    id = Column(BigInteger, primary_key=True)
-    user_id = Column(BigInteger, ForeignKey('users.id'), nullable=False)
-    type = Column(Text)
-    description = Column(Text)
-    name = Column(Text)
-    date = Column(DateTime, default=datetime.now)
+    id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
+    user_id: Mapped[int] = mapped_column(Integer, ForeignKey('users.id'), nullable=False)
+    type: Mapped[str] = mapped_column(Text)
+    description: Mapped[str] = mapped_column(Text)
+    name: Mapped[str] = mapped_column(Text)
+    date: Mapped[datetime] = mapped_column(DateTime, default=datetime.now)
 
-    contact_requests = relationship('ContactRequest', backref='form')
-    reviews = relationship('Reviews', backref='form')
-    ratings = relationship('Ratings', backref='form')
+    user: Mapped['User'] = relationship('User', back_populates='forms')
+    contact_requests: Mapped[list['ContactRequest']] = relationship('ContactRequest', back_populates='form',
+                                                                    lazy='selectin')
+    reviews: Mapped[list['Review']] = relationship('Review', back_populates='form',
+                                                   lazy='selectin')
+    ratings: Mapped[list['Rating']] = relationship('Rating', back_populates='form',
+                                                   lazy='selectin')

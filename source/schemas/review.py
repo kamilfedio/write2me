@@ -8,7 +8,7 @@ class ReviewBase(Base):
     date: datetime
 
 class ReviewCreate(ReviewBase):
-    date = Field(default_factory=datetime.now)
+    date: datetime = Field(default_factory=datetime.now)
 
 class ReviewRead(ReviewBase):
     id: int

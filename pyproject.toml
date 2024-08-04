@@ -8,11 +8,15 @@ readme = "README.md"
 [tool.poetry.dependencies]
 python = "^3.12"
 fastapi = "^0.112.0"
-sqlalchemy = {extras = ["asyncio", "mypy"], version = "^2.0.31"}
 pydantic-settings = "^2.4.0"
 uvicorn = "^0.30.5"
 aiosqlite = "^0.20.0"
 email-validator = "^2.2.0"
+passlib = "^1.7.4"
+argon2-cffi = "^23.1.0"
+python-multipart = "^0.0.9"
+asyncpg = "^0.29.0"
+sqlalchemy = {extras = ["asyncio"], version = "^2.0.31"}
 
 
 [build-system]

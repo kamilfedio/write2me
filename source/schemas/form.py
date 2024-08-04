@@ -18,7 +18,7 @@ class FormBase(Base):
     name: str
 
 class FormCreate(FormBase):
-    date = Field(default=datetime.now)
+    date: datetime = Field(default=datetime.now)
 
 class FormUpdate(FormBase):
     description: str | None = None

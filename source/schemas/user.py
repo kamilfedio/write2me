@@ -1,6 +1,5 @@
 from pydantic import EmailStr
 
-from source.schemas.access_token import AccessTokenRead
 from source.schemas.base import Base
 from source.schemas.form import FormReadShortcut
 
@@ -12,13 +11,16 @@ class UserBase(Base):
 class UserCreate(UserBase):
     password: str
 
-class UserUpdate(UserBase):
-    email: str | None = None
-    password: str | None = None
+class UserUpdate(Base):
+    email: EmailStr | None = None
+    nick: str | None = None
+
+class UserUpdatePassword(Base):
+    old_password: str
+    password: str
 
 class UserReadBase(UserBase):
     id: int
 
 class UserRead(UserBase):
-    access_tokens: list[AccessTokenRead]
     forms: list[FormReadShortcut]
