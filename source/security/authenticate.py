@@ -34,7 +34,7 @@ class SecurityUtils:
         return user
 
     @staticmethod
-    async def create_access_token(user: User, session: AsyncSession) -> AccessToken:
+    async def create_access_token(user: User, session: AsyncSession) -> 'AccessToken':
         """
         creating access token to database
         Args:
@@ -44,6 +44,7 @@ class SecurityUtils:
         Returns:
             _type_: access token
         """
+        from source.models.access_tokens import AccessToken
 
         access_token = AccessToken(user=user)
         session.add(access_token)
@@ -71,5 +72,3 @@ class SecurityUtils:
         """
         return datetime.now(tz=timezone.utc) + timedelta(seconds=duration_seconds)
     
-
-from source.models.access_tokens import AccessToken
