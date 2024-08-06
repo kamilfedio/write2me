@@ -7,7 +7,6 @@ class Form(Base):
     __tablename__ = 'forms'
     id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
     user_id: Mapped[int] = mapped_column(Integer, ForeignKey('users.id'), nullable=False)
-    type: Mapped[str] = mapped_column(Text)
     description: Mapped[str] = mapped_column(Text)
     name: Mapped[str] = mapped_column(Text)
     date: Mapped[datetime] = mapped_column(DateTime, default=datetime.now)

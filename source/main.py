@@ -10,6 +10,7 @@ from source.routes.root import router as root_router
 from source.routes.register import router as register_router
 from source.routes.token import router as token_router
 from source.routes.user import router as user_router
+from source.routes.forms import router as form_router
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
@@ -40,3 +41,4 @@ app.include_router(root_router, tags=['root'])
 app.include_router(register_router, prefix=RoutesConfig.register, tags=['register'])
 app.include_router(token_router, prefix=RoutesConfig.token, tags=['token'])
 app.include_router(user_router, prefix=RoutesConfig.user, tags=['users'])
+app.include_router(form_router, prefix=RoutesConfig.form, tags=['forms'])

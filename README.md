@@ -1,5 +1,7 @@
 ### In progress
 # Write2Me
+Portfolio project app
+
 ## Stack
 - Backend: FastAPI
 - Frontend: React

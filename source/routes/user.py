@@ -10,7 +10,7 @@ from source.security.password import Password
 router = APIRouter()
 
 @router.get('/me', response_model=UserRead)
-async def get_user_me(user: User = Depends(Dependencies.get_current_user)) -> User:
+async def get_user_me(user: User = Depends(Dependencies.get_current_user_private)) -> User:
     """
     returning current user
     Args:
@@ -23,7 +23,7 @@ async def get_user_me(user: User = Depends(Dependencies.get_current_user)) -> Us
 
 @router.patch('/me/update', response_model=UserRead)
 async def user_me_update( user_update: UserUpdate,
-                      user: User = Depends(Dependencies.get_current_user),
+                      user: User = Depends(Dependencies.get_current_user_private),
                       session: AsyncSession = Depends(get_async_session)) -> User:
     """
     updating user data
@@ -48,7 +48,7 @@ async def user_me_update( user_update: UserUpdate,
 
 @router.patch('/me/change_password', response_model=UserRead)
 async def user_me_change_password(user_update: UserUpdatePassword,
-                               user: User = Depends(Dependencies.get_current_user),
+                               user: User = Depends(Dependencies.get_current_user_private),
                                session: AsyncSession = Depends(get_async_session)) -> User:
     """
     changing user password

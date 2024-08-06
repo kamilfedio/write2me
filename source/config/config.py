@@ -18,3 +18,8 @@ class ConfigMiddleware:
     allow_credentials: bool = True
     allow_methods: list[str] = ["*"]
     allow_headers: list[str] = ["*"]
+
+class ConfigToken:
+    token_private: str = 'private'
+    token_public: str = 'public'
+    

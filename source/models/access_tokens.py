@@ -10,6 +10,7 @@ class AccessToken(Base):
     token: Mapped[str] = mapped_column(Text, primary_key=True, default=SecurityUtils.generate_token)
     user_id: Mapped[int] = mapped_column(Integer, ForeignKey('users.id'), nullable=False)
     expiration_date: Mapped[datetime] = mapped_column(DateTime, default=SecurityUtils.get_expiration_date)
+    type: Mapped[str] = mapped_column(Text)
     date: Mapped[datetime] = mapped_column(DateTime, default=datetime.now)
 
     user: Mapped['User'] = relationship("User", lazy='joined')
